@@ -1,31 +1,49 @@
 (add-to-list 'load-path (locate-user-emacs-file "share/emacs/site-lisp"))
-(add-to-list 'load-path (locate-user-emacs-file "share/emacs/site-lisp/simatra"))
+(add-to-list 'load-path (locate-user-emacs-file "share/emacs/site-lisp/emcien"))
 
 
-(add-to-list 'load-path (locate-user-emacs-file "share/emacs/site-lisp/cedet/common"))
+;; CEDET mode
 (load "cedet")
 
 ;; GDB mode
 (setq gdb-many-windows t)
 
 ;; MATLAB mode
-(add-to-list 'load-path (locate-user-emacs-file "share/emacs/site-lisp/matlab-emacs"))
-(require 'matlab-load)
+;; (add-to-list 'load-path (locate-user-emacs-file "share/emacs/site-lisp/matlab-emacs"))
+;; (load "matlab-load")
 
 ;; Muse mode
-(add-to-list 'load-path (locate-user-emacs-file "share/emacs/site-lisp/muse/lisp"))
-(require 'muse)
-(require 'muse-mode)
-(require 'muse-project)
-(require 'muse-html)
-(require 'muse-latex)
-(require 'muse-latex2png)
-(require 'muse-mfigure)
-(require 'muse-subsup)
+;; (add-to-list 'load-path (locate-user-emacs-file "share/emacs/site-lisp/muse/lisp"))
+;; (require 'muse)
+;; (require 'muse-mode)
+;; (require 'muse-project)
+;; (require 'muse-html)
+;; (require 'muse-latex)
+;; (require 'muse-latex2png)
+;; (require 'muse-mfigure)
+;; (require 'muse-subsup)
 
 ;; SML mode
-(add-to-list 'load-path (locate-user-emacs-file "share/emacs/site-lisp/sml-mode"))
-(load "sml-mode-startup")
+;; (add-to-list 'load-path (locate-user-emacs-file "share/emacs/site-lisp/sml-mode"))
+;; (load "sml-mode-startup")
+
+;; JavaScript mode
+(setq js-indent-level 2)
+
+;; Ruby mode
+(add-to-list 'load-path (locate-user-emacs-file "share/emacs/site-lisp/ruby-mode"))
+(autoload 'ruby-mode "ruby-mode")
+(autoload 'rdoc-mode "rdoc-mode")
+(autoload 'run-ruby "inf-ruby")
+(autoload 'inf-ruby-keys "inf-ruby")
+(add-to-list 'interpreter-mode-alist '(("ruby" . ruby-mode)))
+(defun my-ruby-mode-hook ()
+  (inf-ruby-keys))
+(add-hook 'ruby-mode-hook 'my-ruby-mode-hook)
+
+;; Emacs Rails minor mode
+;; (add-to-list 'load-path (locate-user-emacs-file "share/emacs/site-lisp/emacs-rails"))
+;; (require 'rails)
 
 ;; C++ mode for CUDA
 (add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
@@ -36,6 +54,9 @@
 (color-theme-initialize)
 (color-theme-billw)
 
+(setq-default tab-width 8)
+(setq-default indent-tabs-mode nil)
+(setq-default c-basic-offset 2)
 (setq inhibit-startup-message t)
 (show-paren-mode t)
 (setq truncate-lines t)
@@ -47,7 +68,6 @@
 (mouse-avoidance-mode 'cat-and-mouse)
 (when (fboundp 'global-font-lock-mode)
   (global-font-lock-mode t))
-(setq-default intent-tabs-mode nil)
 
 ;; defaults to unified diffs
 (setq diff-switches "-u")
@@ -119,7 +139,7 @@ inserts a newline, and moves forward to indent."
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- )
+ '(rails-enable-ruby-electric nil))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.

@@ -1,10 +1,4 @@
-# .profile 
-SVN_ROOT=https://simatra.jira.com/svn
-export SVN_DYNAMO=${SVN_ROOT}/DYNAMO
-export SVN_SIMENGINE=${SVN_ROOT}/SIMENGINE
-export SVN_WEB=${SVN_ROOT}/WEB
-export SVN_BUILD=${SVN_ROOT}/BUILD
-export SVN_PUBS=${SVN_ROOT}/PUBLICATIONS
+# .profile
 
 if [ -d /usr/local/cuda ]
 then
@@ -12,6 +6,12 @@ then
     MANPATH=/usr/local/cuda/bin:${MANPATH}
     LD_LIBRARY_PATH=/usr/local/cuda/lib:${LD_LIBRARY_PATH}
     DYLD_LIBRARY_PATH=/usr/local/cuda/lib:${DYLD_LIBRARY_PATH}
+fi
+
+if [ -d /Applications/Emacs.app ]
+then
+    PATH=/Applications/Emacs.app/Contents/MacOS/bin:${PATH}
+    EDITOR=emacsclient
 fi
 
 if [ -d /usr/local/mysql ]
@@ -22,10 +22,25 @@ then
     DYLD_LIBRARY_PATH=/usr/local/mysql/lib:${DYLD_LIBRARY_PATH}
 fi
 
-if [ -d /Applications/Emacs.app ]
+if [ -s ~/.rvm/scripts/rvm ]
 then
-    PATH=/Applications/Emacs.app/Contents/MacOS/bin:${PATH}
-    EDITOR=emacsclient
+    . ~/.rvm/scripts/rvm
+fi
+
+if [ -z "${SSH_AUTH_SOCK}" ]; then
+    eval $(ssh-agent)
+    trap 'eval $(ssh-agent -k)' EXIT HUP
+fi
+
+export EC2_HOME=~/.ec2
+export EC2_PRIVATE_KEY=${EC2_HOME}/pk-ZKOBFHLKXZOKA6MHE3CHOW4VUE57RCEH.pem
+export EC2_CERT=${EC2_HOME}/cert-ZKOBFHLKXZOKA6MHE3CHOW4VUE57RCEH.pem
+
+export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
+
+if [ -d ${EC2_HOME} ]
+then
+    PATH=${EC2_HOME}/bin:${PATH}
 fi
 
 export PATH
