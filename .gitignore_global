@@ -1,0 +1,10 @@
+.DS_Store
+*~
+.eshell
+.cache
+.bash_logout
+.bash_history
+.lesshst
+.viminfo
+.gem
+.rvm

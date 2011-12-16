@@ -1,0 +1,28 @@
+[user]
+	name = Joshua E Cook
+	email = jcook@emcien.com
+[core]
+	excludesfile = /Users/joshua/.gitignore_global
+	editor = /Applications/Emacs.app/Contents/MacOS/bin/emacsclient
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[gui]
+	recentrepo = /Users/joshua/Sources/Emcien/mix
+[alias]
+	a = add
+	b = branch
+	c = checkout
+        d = clone
+        f = fetch
+        g = merge
+        l = log --graph --pretty=format:'%h -%d %s (%cr) <%an>' --abbrev-commit --date=relative
+        r = rebase
+        s = status -s
+        u = pull
+        v = diff
+	x = commit
+        z = push
